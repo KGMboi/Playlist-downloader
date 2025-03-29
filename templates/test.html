@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="{{url_for('static',filename = 'index.js')}}"></script>
+    <title>Spotify Dwnld</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'test.css')}}">
+    <script src="{{url_for('static',filename = 'test.js')}}"></script>
 </head>
+
+<header>
+    <h1>Spotify Playlist Downloader</h1>
+</header>
+
 <body>
-    <h1>Spotify Download</h1>
-    <br>
+    <div id="search">
+        <label>Insert your spotify username:</label>
+        <input type="text" id="username">
+        <button onclick="searchPlaylist()"> Search </button>
+    </div>
 
-    <input type="text" id="username">
-    <button onclick="searchPlaylist()"> Search </button>
-
-    <div id = "display"></div>
+    <div id="display"></div>
 </body>
+
 </html>
