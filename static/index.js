@@ -1,4 +1,5 @@
 
+
 const client_id = "8990dec5bcb04b5ca5ca645f5d97b0c2"
 const client_secret = "8597d095699444ba8dcdfa9821cbf0e1"
 
@@ -48,6 +49,8 @@ async function searchPlaylist() {
         innerDisplay.innerHTML = `<img src="${playlist.images[0].url}" alt="">
         <h1>${playlist.name} ${playlist.owner}</h1>
         <p>${playlist.external_urls.spotify}</p>
+
+        <p>${playlist.description}</p>
         <p>Tracks: ${playlist.tracks.total} </p>`
 
 
@@ -56,4 +59,23 @@ async function searchPlaylist() {
 
     
     console.log(respuesta)
+}
+
+
+async function downloadPlaylist(){
+    //obtenemos el link
+    let url
+
+    let data = {url: url}
+
+    let promesa = await fetch("/download_playlist",{
+        method : "POST",
+        headers : {
+            "Content-Type": "application/json"
+        },
+        body : JSON.stringify(data)
+    })
+
+
+    let response = await promesa.json()
 }
