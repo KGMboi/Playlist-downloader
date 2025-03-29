@@ -64,7 +64,7 @@ async function searchPlaylist() {
 
 async function downloadPlaylist(){
     //obtenemos el link
-    let url
+    let url = document.getElementById('url')
 
     let data = {url: url}
 
