@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let response = await promesa.json()
 
   console.log(response)
+  console.log("juan")
   acces_token = response
 
 
@@ -52,10 +53,14 @@ async function searchPlaylist() {
       let innerDisplay = document.createElement('div')
       innerDisplay.innerHTML =
         `<img src="${playlist.images[0].url}" alt="">
-        <h2>${playlist.name} ${playlist.owner}</h2>
+        <h2>${playlist.name} </h2>  
+        <p >${playlist.description}</>
         <p hidden id="url">${playlist.external_urls.spotify}</p>
         <p>Tracks: ${playlist.tracks.total} </p>
-        <button onclick="downloadPlaylist()">Download</button>`
+        <button onclick="downloadPlaylist('${playlist.external_urls.spotify}','${playlist.name}')">Download</button>`
+
+
+
       display.appendChild(innerDisplay)
     };
   }
