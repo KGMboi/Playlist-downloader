@@ -79,7 +79,7 @@ async function downloadPlaylist(url, name) {
   var myModal = new bootstrap.Modal(document.getElementById("exampleModal"), {
     backdrop: 'static', // Disable closing the modal by clicking outside
     keyboard: false      // Disable closing the modal with the keyboard's escape key
-});
+  });
   myModal.show();
   document.getElementById('catDisplay').src = catGifs
 
@@ -87,11 +87,11 @@ async function downloadPlaylist(url, name) {
 
   let loading = true;
   let interval = setInterval(() => {
-      if (loading){
-        console.log("Loading")
-      }; // This action happens while waiting
+    if (loading) {
+      console.log("Loading")
+    }; // This action happens while waiting
   }, 1000);
-  
+
   let promesa = await fetch("/download_playlist", {
     method: "POST",
     headers: {
@@ -103,7 +103,7 @@ async function downloadPlaylist(url, name) {
 
   let response = await promesa.blob()
 
-  
+
   loading = false;
   clearInterval(interval);
   myModal.hide()
