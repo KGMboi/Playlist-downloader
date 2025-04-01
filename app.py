@@ -21,10 +21,11 @@ def download_playlist():
     data = request.json
     url = data['url']
     name = data['name']
-
+    print(url)
     dir = f"downloads/{name}"
     os.makedirs(dir)
     
+    #api CLI (command line interface)
     subprocess.run(["spotdl", url, "--output", dir], check=True)
 
     unique_id = str(uuid.uuid4())    

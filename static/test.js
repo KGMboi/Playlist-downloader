@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let response = await promesa.json()
 
   console.log(response)
+  console.log("juan")
   acces_token = response
 
 
@@ -55,7 +56,7 @@ async function searchPlaylist() {
         <h2>${playlist.name} ${playlist.owner}</h2>
         <p id="url">${playlist.external_urls.spotify}</p>
         <p>Tracks: ${playlist.tracks.total} </p>
-        <button onclick="">Download</button>`
+        <button onclick="downloadPlaylist('${playlist.external_urls.spotify}','${playlist.name}')">Download</button>`
 
 
 
