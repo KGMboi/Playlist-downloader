@@ -59,8 +59,6 @@ async function searchPlaylist() {
         <p>Tracks: ${playlist.tracks.total} </p>
         <button onclick="downloadPlaylist('${playlist.external_urls.spotify}','${playlist.name}')">Download</button>`
 
-
-
       display.appendChild(innerDisplay)
     };
   }
@@ -81,10 +79,6 @@ async function downloadPlaylist(url, name) {
     body: JSON.stringify(data)
   })
 
-  
-  let interval = setInterval(() => {
-    console.log("Still waiting...");
-}, 1000);
 
   let response = await promesa.blob()
 
@@ -110,3 +104,6 @@ async function getCatGif() {
   return data[0].url;
 }
 
+let logo = document.getElementById('logo')
+
+logo.addEventListener(click)
