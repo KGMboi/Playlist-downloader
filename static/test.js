@@ -53,8 +53,8 @@ async function searchPlaylist() {
       let innerDisplay = document.createElement('div')
       innerDisplay.innerHTML =
         `<img src="${playlist.images[0].url}" alt="">
-        <h2>${playlist.name} ${playlist.owner}</h2>
-        <p id="url">${playlist.external_urls.spotify}</p>
+        <h2>${playlist.name} </h2>  
+        <p hidden id="url">${playlist.external_urls.spotify}</p>
         <p>Tracks: ${playlist.tracks.total} </p>
         <button onclick="downloadPlaylist('${playlist.external_urls.spotify}','${playlist.name}')">Download</button>`
 
