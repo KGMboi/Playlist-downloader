@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 async function searchPlaylist() {
   let username = document.getElementById('username').value
+  let displayy = document.getElementById('display')
+  displayy.innerHTML = ""
 
   const promesa = await fetch(`https://api.spotify.com/v1/users/${username}/playlists`, {
     headers: { "Authorization": `Bearer ${acces_token.access_token}` },
@@ -50,10 +52,10 @@ async function searchPlaylist() {
       let innerDisplay = document.createElement('div')
       innerDisplay.innerHTML =
         `<img src="${playlist.images[0].url}" alt="">
-        <h2>${playlist.name} ${playlist.owner}</h2>
-        <p id="url">${playlist.external_urls.spotify}</p>
+        <h2>${playlist.name}</h2>
+        <p hidden id="url">${playlist.external_urls.spotify}</p>
         <p>Tracks: ${playlist.tracks.total} </p>
-        <button onclick="">Download</button>`
+        <button onclick="downloadPlaylist()">Download</button>`
 
 
 
@@ -66,7 +68,7 @@ async function searchPlaylist() {
 
 async function downloadPlaylist() {
   //obtenemos el link
-  let url
+  let url = document.getElementById('url')
 
   let data = { url: url }
 

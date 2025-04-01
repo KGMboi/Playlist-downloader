@@ -1,11 +1,22 @@
 header {
-    background-color: black;
+    background-color: rgb(20, 20, 20);
     padding: 20px;
     text-align: center;
+    font: Circular-black, sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header img {
+    max-width: 150px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: .2rem;
 }
 
 body {
-    font-family: poppins, sans-serif;
+    font-family: Circular-black, sans-serif;
     font-size: 20px;
     color: white;
     margin: 0;
@@ -14,42 +25,46 @@ body {
 }
 
 h1 {
-    color: #00a10d;
+    color: rgb(29, 185, 84);
+    transform: translateX(-40%);
 }
 
 #search {
     margin: 20px auto;
     padding: 10px;
     background-color: #1e1e1e;
-    border: 1px solid #00a10d;
+    border: 1px solid rgb(29, 185, 84);
     border-radius: 10px;
-    max-width: 800px;
+    max-width: 500px;
 }
 
 #display {
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #1e1e1e;
-    border: 1px solid #00a10d;
-    border-radius: 10px;
-    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
 }
 
 #display div {
     margin-bottom: 15px;
     padding: 10px;
     background-color: #333;
-    border-radius: 5px;
+    border: 3px solid rgb(29, 185, 84);
+    border-radius: 10px;
+    flex: 0 0 200px;
+    scroll-snap-align: center;
 }
 
 #display img {
-    max-width: 100px;
+    max-width: 120px;
     border-radius: 5px;
     margin-right: 10px;
 }
 
 #display h2 {
-    color: #00ff00;
+    color: rgb(29, 185, 84);
     margin: 5px 0;
 }
 
@@ -59,8 +74,8 @@ h1 {
 }
 
 #display button {
-    background-color: #00a10d;
-    color: white;
+    background-color: rgb(29, 185, 84);
+    color: black;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
@@ -68,5 +83,5 @@ h1 {
 }
 
 #display button:hover {
-    background-color: #007a0a;
+    background-color: rgb(28, 194, 86);
 }
