@@ -93,27 +93,11 @@ async function downloadPlaylist(url, name) {
 }
 
 // This function fetches a random cat image from The Cat API
-async function getCatImage() {
-  const response = await fetch('https://api.thecatapi.com/v1/images/search', {
+async function getCatGif() {
+  const response = await fetch('https://api.thecatapi.com/v1/images/search?mime_types=gif', {
     headers: { 'x-api-key': 'live_Px5Vg1InHEcAQhOUKc2eTNN3GeiLdsKYp9I9nYEu9u2f4k7wzh1cCCJ48iYTawVj' }
   });
   const data = await response.json();
   return data[0].url;
 }
 
-function showCatsWhileDownloading() {
-  const catContainer = document.getElementById('cat-container');
-  getCatImage().then(url => {
-    catContainer.innerHTML = `<img src="${url}" alt="Cute cat" width="300">`;
-  });
-
-  // Refresh cat images every second
-  const interval = setInterval(() => {
-    getCatImage().then(url => {
-      catContainer.innerHTML = `<img src="${url}" alt="Cute cat" width="300">`;
-    });
-  }, 1000);
-
-  // Stop showing cats once the download is complete
-  setTimeout(() => clearInterval(interval), DOWNLOAD_DURATION);
-}
