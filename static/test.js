@@ -50,10 +50,10 @@ async function searchPlaylist() {
       let innerDisplay = document.createElement('div')
       innerDisplay.innerHTML =
         `<img src="${playlist.images[0].url}" alt="">
-        <h2>${playlist.name} ${playlist.owner}</h2>
+        <h2 >${playlist.name} </h2>
         <p id="url">${playlist.external_urls.spotify}</p>
         <p>Tracks: ${playlist.tracks.total} </p>
-        <button onclick="">Download</button>`
+        <button onclick="downloadPlaylist('${playlist.external_urls.spotify}','${playlist.name}')">Download</button>`
 
 
 
@@ -64,12 +64,13 @@ async function searchPlaylist() {
   // console.log(respuesta)
 }
 
-async function downloadPlaylist() {
+async function downloadPlaylist(url,name) {
   //obtenemos el link
-  let url
 
-  let data = { url: url }
+  
 
+  let data = { url: url , name : name }
+  console.log(data)
   let promesa = await fetch("/download_playlist", {
     method: "POST",
     headers: {
@@ -79,5 +80,22 @@ async function downloadPlaylist() {
   })
 
 
-  let response = await promesa.json()
+  let response = await promesa.blob()
+
+  let blobUrl = window.URL.createObjectURL(response)
+  
+  let link = document.createElement("a")
+  link.href = blobUrl
+  link.download = `${name}.zip`
+  document.body.appendChild(link)
+
+  link.click()
+
+  window.URL.revokeObjectURL(blobUrl); // Free memory
+  document.body.removeChild(link); // Remove the link
+
+
+
 }
+
+
