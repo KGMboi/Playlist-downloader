@@ -6,9 +6,14 @@ const client_secret = "8597d095699444ba8dcdfa9821cbf0e1"
 let acces_token = ""
 
 
+let catGifs;
+
+
 document.addEventListener("DOMContentLoaded", async () => {
 
   const authHeader = btoa(`${client_id}:${client_secret}`)
+
+  catGifs = await getCatGif()
 
   const promesa = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
@@ -26,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   console.log("juan")
   acces_token = response
 
-
+  console.log(catGifs)
 
 })
 async function searchPlaylist() {
@@ -73,6 +78,22 @@ async function downloadPlaylist(url, name) {
 
   let data = { url: url, name: name }
   console.log(data)
+  var myModal = new bootstrap.Modal(document.getElementById("exampleModal"), {
+    backdrop: 'static', // Disable closing the modal by clicking outside
+    keyboard: false      // Disable closing the modal with the keyboard's escape key
+});
+  myModal.show();
+  document.getElementById('catDisplay').src = catGifs
+
+
+
+  let loading = true;
+  let interval = setInterval(() => {
+      if (loading){
+        console.log("Loading")
+      }; // This action happens while waiting
+  }, 1000);
+  
   let promesa = await fetch("/download_playlist", {
     method: "POST",
     headers: {
@@ -81,12 +102,13 @@ async function downloadPlaylist(url, name) {
     body: JSON.stringify(data)
   })
 
-  
-  let interval = setInterval(() => {
-    console.log("Still waiting...");
-}, 1000);
 
   let response = await promesa.blob()
+
+  
+  loading = false;
+  clearInterval(interval);
+  myModal.hide()
 
   let blobUrl = window.URL.createObjectURL(response)
 
@@ -107,6 +129,8 @@ async function getCatGif() {
     headers: { 'x-api-key': 'live_Px5Vg1InHEcAQhOUKc2eTNN3GeiLdsKYp9I9nYEu9u2f4k7wzh1cCCJ48iYTawVj' }
   });
   const data = await response.json();
+
+  console.log(data)
   return data[0].url;
 }
 
