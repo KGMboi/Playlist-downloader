@@ -82,6 +82,10 @@ async function downloadPlaylist(url, name) {
   })
 
   
+  let interval = setInterval(() => {
+    console.log("Still waiting...");
+}, 1000);
+
   let response = await promesa.blob()
 
   let blobUrl = window.URL.createObjectURL(response)
