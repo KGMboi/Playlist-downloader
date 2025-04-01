@@ -1,33 +1,46 @@
-from flask import Flask,render_template,request,send_file
+from flask import Flask,render_template,request,send_file,redirect,url_for
 import base64
 import requests
 import base64
 import os
 import subprocess
 import shutil
+import uuid
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def root():
     return render_template("test.html")
 
 
+
 @app.route("/download_playlist", methods = ['POST'] )
 def download_playlist():
-    
-    url  = request.json['url']
+    data = request.json
+    url = data['url']
+    name = data['name']
 
+    dir = f"downloads/{name}"
+    os.makedirs(dir)
     
-    output_dir = os.path.join("downloads")
-    os.makedirs(output_dir, exist_ok=True)
+    subprocess.run(["spotdl", url, "--output", dir], check=True)
 
-    try:
-        subprocess.run(["spotdl", url, "--output", output_dir], check=True)
-        zip_path = shutil.make_archive(output_dir, 'zip', output_dir)
-        return send_file(zip_path, as_attachment=True)
-    except Exception as e:
-        print(e)
+    unique_id = str(uuid.uuid4())    
+    rt = os.path.join(os.getcwd(),"downloads",name)
+    print(rt)
+    route = shutil.make_archive(unique_id,"zip",rt)
+    return send_file(route,as_attachment=True,download_name=name)
+
+
+
+
+
+@app.route("/test")
+def test():
+    print("hols")
+    
 
 
 if __name__ == "__main__":
