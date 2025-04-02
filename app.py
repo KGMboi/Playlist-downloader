@@ -40,7 +40,7 @@ def download_playlist():
 
 @app.route("/test")
 def test():
-    print("hols")
+    print("hola")
     
 
 
