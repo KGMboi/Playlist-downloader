@@ -131,7 +131,3 @@ async function getCatGif() {
   console.log(data)
   return data[0].url;
 }
-
-let logo = document.getElementById('logo')
-
-logo.addEventListener(click)
