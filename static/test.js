@@ -42,8 +42,8 @@ async function searchPlaylist() {
   if (username == "") {
     alert("Introduce un usuario")
     return
-  } else if (username <= 0) {
-    alert("No se puede buscar con cero ni numeros negativos")
+  } else if (username <= 0 || username.length > 25) {
+    alert("No se puede buscar con cero ni numeros negativos. Tampoco mayor a 25 caracteres")
     return
   } else {
     const promesa = await fetch(`https://api.spotify.com/v1/users/${username}/playlists`, {
