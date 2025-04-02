@@ -20,26 +20,24 @@
     <div id="search">
         <label>Insert your spotify username:</label>
         <input type="text" id="username">
-        <button onclick="searchPlaylist()"> Search </button>
+        <button id="searchMe" onclick="searchPlaylist()">Search</button>
     </div>
 
     <div id="display"></div>
 
-    <div class="container mt-5">
+    <!-- <div class="container mt-5">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Open Modal
         </button>
-    </div>
+    </div> -->
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cats!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="exampleModalLabel">Downloading...</h5>
                 </div>
                 <div class="modal-body">
-                    Downloading...
                     <img src="" id="catDisplay" alt="">
                 </div>
             </div>
