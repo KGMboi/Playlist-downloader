@@ -33,7 +33,7 @@ def download_playlist():
     print(rt)
     route = shutil.make_archive(unique_id,"zip",rt)
 
-    os.removedirs(dir)
+    shutil.rmtree(dir)
     return send_file(route,as_attachment=True,download_name=name)
 
 
