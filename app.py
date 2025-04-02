@@ -32,6 +32,8 @@ def download_playlist():
     rt = os.path.join(os.getcwd(),"downloads",name)
     print(rt)
     route = shutil.make_archive(unique_id,"zip",rt)
+
+    os.removedirs(dir)
     return send_file(route,as_attachment=True,download_name=name)
 
 

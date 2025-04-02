@@ -88,7 +88,7 @@ async function downloadPlaylist(url, name) {
   let loading = true;
   let interval = setInterval(() => {
     if (loading) {
-      console.log("Loading")
+      console.log("Loading...")
     }; // This action happens while waiting
   }, 1000);
 
