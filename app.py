@@ -22,18 +22,21 @@ def download_playlist():
     url = data['url']
     name = data['name']
     print(url)
-    dir = f"downloads/{name}"
+
+    unique_id1 = str(uuid.uuid4())    
+    dir = f"downloads/{unique_id1}"
     os.makedirs(dir)
     
     #api CLI (command line interface)
     subprocess.run(["spotdl", url, "--output", dir], check=True)
 
     unique_id = str(uuid.uuid4())    
-    rt = os.path.join(os.getcwd(),"downloads",name)
+    rt = os.path.join(os.getcwd(),"downloads",unique_id1)
     print(rt)
     route = shutil.make_archive(unique_id,"zip",rt)
 
     shutil.rmtree(dir)
+    
     return send_file(route,as_attachment=True,download_name=name)
 
 
