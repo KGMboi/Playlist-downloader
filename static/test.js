@@ -39,38 +39,46 @@ async function searchPlaylist() {
   let displayy = document.getElementById('display')
   displayy.innerHTML = ""
 
-  const promesa = await fetch(`https://api.spotify.com/v1/users/${username}/playlists`, {
-    headers: { "Authorization": `Bearer ${acces_token.access_token}` },
-  });
+  if (username == "") {
+    alert("Introduce un usuario")
+    return
+  } else if (username <= 0 || username.length > 25) {
+    alert("No se puede buscar con cero ni numeros negativos. Tampoco mayor a 25 caracteres")
+    return
+  } else {
+    const promesa = await fetch(`https://api.spotify.com/v1/users/${username}/playlists`, {
+      headers: { "Authorization": `Bearer ${acces_token.access_token}` },
+    });
 
-  let playlists = await promesa.json()
+
+    let playlists = await promesa.json()
 
 
-  console.log(playlists)
-  let display = document.getElementById('display')
+    console.log(playlists)
+    let display = document.getElementById('display')
 
-  if (playlists == null || playlists.items.length == 0) {
-    display.innerHTML = "<h2>No hay playlists</h2>"
-  }
-  else {
-    for (let playlist of playlists.items) {
+    if (playlists == null || playlists.items.length == 0) {
+      display.innerHTML = "<h2>No hay playlists</h2>"
+    }
+    else {
+      for (let playlist of playlists.items) {
 
-      let innerDisplay = document.createElement('div')
-      innerDisplay.innerHTML =
-        `<img src="${playlist.images[0].url}" alt="">
+        let innerDisplay = document.createElement('div')
+        innerDisplay.innerHTML =
+          `<img src="${playlist.images[0].url}" alt="">
         <h2>${playlist.name} </h2>  
         <p >${playlist.description}</>
         <p hidden id="url">${playlist.external_urls.spotify}</p>
         <p>Tracks: ${playlist.tracks.total} </p>
         <button onclick="downloadPlaylist('${playlist.external_urls.spotify}','${playlist.name}')">Download</button>`
 
-      display.appendChild(innerDisplay)
-    };
+        display.appendChild(innerDisplay)
+      };
+    }
+
+    // console.log(respuesta)
   }
-
-  // console.log(respuesta)
 }
-
 async function downloadPlaylist(url, name) {
   //obtenemos el link
 
